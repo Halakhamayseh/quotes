@@ -7,3 +7,6 @@ WE install this link(implementation 'com.google.code.gson:gson:2.8.7') inside bu
 #### how your grader can run your code and see outputs.
 1. Create new object type Quotes than assine to it function passing through it path ``ArrayList<Quotes>quotes=readFileFunction(path);``
 2. print Output using object name with random number ``System.out.println(quotes.get(random).toString());``
+
+#### run after clone repo 
+- i test the code and it's working successfully 
