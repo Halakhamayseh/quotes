@@ -7,9 +7,11 @@ package quotes;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,24 +20,64 @@ public class App {
     public String getGreeting() {
         return "Hello World!";
     }
+    public static BufferedReader newBuffered;
     public static void main(String[] args) {
-        ArrayList<Quotes>quotes=new ArrayList<Quotes>();
+
         System.out.println(new App().getGreeting());
-        //Gson gson=new Gson();
-        File file = new File("app/src/main/resources/recentquotes.json");
+
         try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNext()){
-                System.out.println("read");
-            }
-        }catch (FileNotFoundException e){
-            System.out.println("not");
+            //File newfile =new File("app/src/main/resources/recentquotes.json");
+            Path path= Paths.get("app/src/main/resources/recentquotes.json");
+           // Scanner newScan=new Scanner(newfile);
+          // BufferedReader readFileb=new BufferedReader((new FileReader("app/src/main/resources/recentquotes.json")));
+            //FileReader filenew=new FileReader("app/src/main/resources/recentquotes.json");//1
+            //Scanner scanner =new Scanner(readFile);
+            //while (scanner.hasNext()){
+              //  System.out.println(scanner.next());
+            //}
+            ArrayList<Quotes>quotes=readFileFunction(path);
+                    int random= (int) (Math.random()*(quotes.size()));
+          // int randomnew=random*(quotes.size());
+           // System.out.println(random);
+            System.out.println(quotes.get(random).toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
+        public static ArrayList<Quotes> readFileFunction(Path onepath){
+            Gson gson=new Gson();
+
+            //read= new BufferedReader((new FileReader()));
+           // BufferedReader newBuffered=new BufferedReader(newFile);
+            //Scanner newScan=new Scanner(fileone);
+
+           // ArrayList<Quotes>quotes=gson.fromJson(readFile,);
+           try {
+               newBuffered= Files.newBufferedReader(onepath);
+              // newBuffered.close();
+           }catch (IOException exception){
+               exception.printStackTrace();
+               //https://codehero.ae/java/20773850/gson-typetoken-with-dynamic-arraylist-item-type//using this website to get typeof//
+            }  Type typeOfObjectsList = new TypeToken<ArrayList<Quotes>>() {}.getType();
+
+            ArrayList<Quotes> quotes = gson.fromJson (newBuffered,typeOfObjectsList);
+             return quotes;
+        }
+       // File file = new File("app/src/main/resources/recentquotes.json");
+        //try {
+            //Scanner scanner = new Scanner(file);
+           // while (scanner.hasNext()){
+              //  System.out.println("read");
+           // }
+        //}catch (FileNotFoundException e){
+            //System.out.println("not");
+       // }
       // gson.fromJson("app/src/main/resources/recentquotes.json");
-        Type typeOfObjectsList = new TypeToken<ArrayList<Quotes>>() {}.getType();
-        List<Quotes> objectsList = new Gson().fromJson(String.valueOf(file),typeOfObjectsList);
+        //Type typeOfObjectsList = new TypeToken<ArrayList<Quotes>>() {}.getType();
+       // List<Quotes> objectsList = new Gson().fromJson (file,typeOfObjectsList);
 //Parentquotes oneQuote=gson.fromJson(file,);
 
-        System.out.println(objectsList);
-    }
+       // System.out.println(objectsList);
+    //}
 }
