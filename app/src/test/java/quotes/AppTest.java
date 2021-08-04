@@ -16,17 +16,17 @@ class AppTest {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
-    @Test void testlab08() {
-      String result="Quotes{tags=[attributed-no-source], author='Marilyn Monroe', likes='18651 likes', text=' �I am good, but not an angel. I do sin, but I am not the devil. I am just a small girl in a big world trying to find someone to love.� '}";
-        try {
-            Path path = Paths.get("app/src/main/resources/recentquotes.json");
-            ArrayList<Quotes> quotes = App.readFileFunction(path);
-            //int random = (int) (Math.random() * (quotes.size()));
-            //System.out.println(quotes.get(0).toString());
-            assertEquals(result,quotes.get(0).toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
+//    @Test void testlab08() {
+//      String result="Quotes{tags=[attributed-no-source], author='Marilyn Monroe', likes='18651 likes', text=' �I am good, but not an angel. I do sin, but I am not the devil. I am just a small girl in a big world trying to find someone to love.� '}";
+//        try {
+//            Path path = Paths.get("app/src/main/resources/recentquotes.json");
+//            ArrayList<Quotes> quotes = App.readFileFunction(path);
+//            //int random = (int) (Math.random() * (quotes.size()));
+//            //System.out.println(quotes.get(0).toString());
+//            assertEquals(result,quotes.get(0).toString());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 }
