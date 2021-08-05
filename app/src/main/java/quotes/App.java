@@ -37,9 +37,19 @@ public class App {
                 InputStream inputnew = newConnection.getInputStream();
                 InputStreamReader inputReadnew = new InputStreamReader(inputnew);
                 BufferedReader bufferedReader = new BufferedReader(inputReadnew);
+
                 String line = bufferedReader.readLine();
-                System.out.println(line);
-                line = bufferedReader.readLine();
+                //int index=0;
+                while (line!= null){
+                    //index++;
+                    System.out.println(line);
+                    line = bufferedReader.readLine();
+                    //ArrayList<String> lines = bufferedReader.readLine();
+                    //System.out.println(line);
+                    //System.out.println(index);
+                }
+
+
 
                 bufferedReader.close();}
             else{
